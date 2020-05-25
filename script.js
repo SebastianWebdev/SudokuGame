@@ -1,6 +1,7 @@
 // sudoku Algorithm
 /*krzysztof.bozek@hotmail.com a tytule wpisać również nr indeksu */
 {
+  // Creating HTML structure and sudoku object
   const createHTML = (id = "") => {
     const sudokuContainer = document.getElementById(id);
     const border = "1px solid gray";
@@ -80,12 +81,12 @@
         const index = sudokuCopy[totalRowNumber][
           totalColNumber
         ].possibleNumbers.indexOf(numberToEliminate);
-        index !== -1
-          ? sudokuCopy[totalRowNumber][totalColNumber].possibleNumbers.splice(
-              index,
-              1
-            )
-          : null;
+        index !== -1 ?
+          sudokuCopy[totalRowNumber][totalColNumber].possibleNumbers.splice(
+            index,
+            1
+          ) :
+          null;
       }
     });
 
@@ -144,7 +145,10 @@
     const indexes = [];
     sudoku.forEach((item) => {
       item.forEach((rect) => {
-        indexes.push({ row: rect.row, column: rect.column });
+        indexes.push({
+          row: rect.row,
+          column: rect.column
+        });
       });
     });
 
@@ -170,8 +174,8 @@
     const numbersCount =
       Math.floor(
         Math.random() *
-          (amountOfNumbersToEliminate[difficulty].max -
-            amountOfNumbersToEliminate[difficulty].min)
+        (amountOfNumbersToEliminate[difficulty].max -
+          amountOfNumbersToEliminate[difficulty].min)
       ) + amountOfNumbersToEliminate[difficulty].min;
     for (let i = 0; i < 81 - numbersCount; i++) {
       const index = Math.floor(Math.random() * indexes.length);
@@ -230,7 +234,10 @@
     const finalSudoku = createSudokuToSolve(fullSudoku, difficulty);
     writeSudkuToHTML(finalSudoku, createHTML(id));
 
-    return { fullSudoku, finalSudoku };
+    return {
+      fullSudoku,
+      finalSudoku
+    };
   };
   const createNumbersPanel = (selector = "") => {
     const parent = document.querySelector(selector);
@@ -246,23 +253,23 @@
     }
     parent.appendChild(panel);
   };
-
+  // Sudoku App and state managment
   const App = (sudokuID = "") => {
     const PRIVATE_DATA = {
       icons: {
-        play:
-          "M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z",
-        pause:
-          "M9 16h2V8H9v8zm3-14C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-4h2V8h-2v8z",
-        remove:
-          "M7 11v2h10v-2H7zm5-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z",
-        add:
-          "M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z",
+        play: "M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z",
+        pause: "M9 16h2V8H9v8zm3-14C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-4h2V8h-2v8z",
+        remove: "M7 11v2h10v-2H7zm5-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z",
+        add: "M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z",
       },
     };
+
     const SetState = (state = {}, callback) => {
-      AppState = { ...AppState, ...state };
-      console.log(AppState);
+      AppState = {
+        ...AppState,
+        ...state
+      };
+
       callback(AppState);
       //AppUpdated(callback);
     };
@@ -329,6 +336,9 @@
       playBtn.children[1].setAttribute("d", PRIVATE_DATA.icons.play);
       writeSudkuToHTML(AppState.sudokuToSolve, sudoku);
     };
+    const handlePen = () => {
+
+    }
     // --------------------------------------------------------------------HTML_Elements
     const playElement = document.getElementById("sudoku_init_btn");
     const sudokuHTML = document.getElementById(sudokuID);
@@ -357,6 +367,13 @@
               target.dataset.actionType = "remove";
               AppState.sudokuMode = "normal";
               target.children[1].setAttribute("d", PRIVATE_DATA.icons.remove);
+            } else if (actionType === "pen") {
+              target.dataset.actionType = "penActive";
+              AppState.sudokuMode = "pen"
+              handlePen();
+            } else if (actionType === "penActive") {
+              target.dataset.actionType = "pen";
+              AppState.sudokuMode = "normal"
             }
           }
         });
@@ -381,7 +398,9 @@
     };
     // handling Sudoku areas
     sudokuHTML.addEventListener("click", (e) => {
-      const { HTMLRects } = AppState;
+      const {
+        HTMLRects
+      } = AppState;
       e.stopPropagation();
 
       if (
@@ -392,16 +411,19 @@
         const row = e.target.dataset.row;
         const col = e.target.dataset.column;
         HTMLRects.forEach((element) => {
-          if (element.dataset.row === row && element.dataset.column === col) {
-          } else {
+          if (element.dataset.row === row && element.dataset.column === col) {} else {
             element.classList.remove("active");
           }
         });
         e.target.classList.toggle("active");
         if (e.target.classList.contains("active")) {
-          AppState.selectedRect = { row, col, element: e.target };
+          AppState.selectedRect = {
+            row,
+            col,
+            element: e.target
+          };
           if (AppState.sudokuMode === "remove") {
-            console.log("DZIAŁA--------------");
+
             AppState.selectedRect = {};
             e.target.innerText = "";
           }
@@ -417,10 +439,13 @@
       e.target.style.display = "none";
       // creating panel with numbers to select
       createNumbersPanel(".sudoku-wrap");
-      const { hasSudokuInitialize, time, sudokuID } = AppState;
+      const {
+        hasSudokuInitialize,
+        time,
+        sudokuID
+      } = AppState;
       sudokuHTML.style.display = "grid";
-      if (hasSudokuInitialize) {
-      } else {
+      if (hasSudokuInitialize) {} else {
         const intervalId = window.setInterval(() => {
           AppState.time++;
           handleTimer(AppState.time);
@@ -432,7 +457,9 @@
         AppState.sudokuToSolve = data.finalSudoku;
         AppState.HTMLRects = document.querySelectorAll(".sudoku_number");
         const panel = document.querySelector(".numbers_panel");
-        SetState({ NumbersPanel: panel }, handleNumbersPanel);
+        SetState({
+          NumbersPanel: panel
+        }, handleNumbersPanel);
       }
     });
   };

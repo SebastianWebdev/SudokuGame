@@ -1,75 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sudoku</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./style.css" />
-  </head>
-  <body>
-    <button id="LOG_BTN">CONSOLE LOG</button>
-    <div class="sudoku-wrap">
-      <div class="timer"><p id="sudoku_timer">0</p></div>
-      <div style="display: none;" id="sudoku"></div>
-      <div id="action_panel" class="settings">
-        <div class="action">
-          <svg
-            class="action_icon"
-            data-action="true"
-            data-action-type="reset"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="black"
-            width="35px"
-            height="35px"
-          >
-            <path d="M0 0h24v24H0z" fill="none" />
-            <path d="M6 6h12v12H6z" />
-          </svg>
-        </div>
-        <div class="action">
-          <svg
-            data-action="true"
-            data-action-type="pause"
-            class="action_icon"
-            id="action_pause"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="black"
-            width="35px"
-            height="35px"
-          >
-            <path d="M0 0h24v24H0z" fill="none" />
-            <path
-              d="M9 16h2V8H9v8zm3-14C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-4h2V8h-2v8z"
-            />
-          </svg>
-        </div>
-        <div class="action">
-          <svg
-            class="action_icon"
-            data-action="true"
-            data-action-type="remove"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="black"
-            width="35px"
-            height="35px"
-          >
-            <path d="M0 0h24v24H0z" fill="none" />
-            <path
-              d="M7 11v2h10v-2H7zm5-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
-            />
-          </svg>
-        </div>
-      </div>
-      <button id="sudoku_init_btn" class="btn-main">Start game</button>
-    </div>
 
-    <script src="./script.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sudoku</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <button id="LOG_BTN">CONSOLE LOG</button>
+  <div class="sudoku-wrap">
+    <div class="timer">
+      <p id="sudoku_timer">0</p>
+    </div>
+    <div style="display: none;" id="sudoku"></div>
+    <div id="action_panel" class="settings">
+      <div class="action">
+        <svg class="action_icon" data-action="true" data-action-type="reset" xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24" fill="black" width="35px" height="35px">
+          <path d="M0 0h24v24H0z" fill="none" />
+          <path d="M6 6h12v12H6z" />
+        </svg>
+      </div>
+      <div class="action">
+        <svg data-action="true" data-action-type="pause" class="action_icon" id="action_pause"
+          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="35px" height="35px">
+          <path d="M0 0h24v24H0z" fill="none" />
+          <path
+            d="M9 16h2V8H9v8zm3-14C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-4h2V8h-2v8z" />
+        </svg>
+      </div>
+      <div class="action">
+        <svg class="action_icon" data-action="true" data-action-type="remove" xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24" fill="black" width="35px" height="35px">
+          <path d="M0 0h24v24H0z" fill="none" />
+          <path
+            d="M7 11v2h10v-2H7zm5-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+        </svg>
+      </div>
+      <div class="action">
+        <img style="width:28px;" class="action_icon" data-action="true" data-action-type="pen"
+          src="./assets/icons/pencile.png" alt="pencile icon">
+      </div>
+    </div>
+    <button id="sudoku_init_btn" class="btn-main">Start game</button>
+  </div>
+  Icons made by <a href="https://www.flaticon.com/authors/google" title="Google">Google</a> from <a
+    href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+  <script src="./script.js"></script>
+</body>
+
 </html>
